@@ -126,7 +126,7 @@ public class ItemConduit extends AbstractConduit implements IItemConduit {
         if(entry.getValue() != null) {
           IItemFilter f = entry.getValue();
           if(f != null) {
-            setSpeedUpgrade(entry.getKey(), new ItemStack(EnderIO.itemExtractSpeedUpgrade, 15, 0));
+            setSpeedUpgrade(entry.getKey(), new ItemStack(EnderIO.itemExtractSpeedUpgrade, 21, 0));
           }
         }
       }
