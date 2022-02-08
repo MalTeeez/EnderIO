@@ -28,6 +28,7 @@ public final class GasUtil {
       }
       useCheckPerformed = true;
     }
+    isGasConduitEnabled = true;
     return isGasConduitEnabled;
   }
 
