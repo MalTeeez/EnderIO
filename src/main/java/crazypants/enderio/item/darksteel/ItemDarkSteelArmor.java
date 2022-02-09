@@ -116,7 +116,6 @@ public class ItemDarkSteelArmor extends ItemArmor implements IEnergyContainerIte
   public ItemDarkSteelArmor(ArmorMaterial mat, String name, int armorType) {
 	    super(mat, 0, armorType);
 	    this.name = name;
-	    setCreativeTab(EnderIOTab.tabEnderIO);
 	    String str = name + "_" + NAMES[armorType];
 	    setUnlocalizedName(str);
 	    setTextureName(EnderIO.DOMAIN+ ":" + str);
