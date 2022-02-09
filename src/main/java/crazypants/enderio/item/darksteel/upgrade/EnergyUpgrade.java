@@ -249,13 +249,13 @@ public class EnergyUpgrade extends AbstractUpgrade {
     AbstractUpgrade upgrade = loadFromItem(stack);
     int index = 0;
     if (upgrade.unlocName.equals(EMPOWERED_TWO.unlocName)) {
-      index = 1;
+      index = 0;
     } else if (upgrade.unlocName.equals(EMPOWERED_THREE.unlocName)) {
-      index = 2;
+      index = 1;
     } else if (upgrade.unlocName.equals(EMPOWERED_FOUR.unlocName)) {
-      index = 3;
+      index = 2;
     } else if (upgrade.unlocName.equals(EMPOWERED_FIVE.unlocName)) {
-      index = 4;
+      index = 3;
     }
     return Config.darkSteelPowerDamgeAbsorptionRatios[index];
   }
