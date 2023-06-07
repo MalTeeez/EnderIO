@@ -21,62 +21,61 @@ import crazypants.enderio.conduit.render.DefaultConduitRenderer;
 
 public class RedstoneSwitchRenderer extends DefaultConduitRenderer {
 
-  private static final RedstoneSwitchRenderer instance = new RedstoneSwitchRenderer();
+    private static final RedstoneSwitchRenderer instance = new RedstoneSwitchRenderer();
 
-  public static RedstoneSwitchRenderer getInstance() {
-    return instance;
-  }
-
-  private final VertexTransform[] xForms;
-  private final BoundingBox switchBounds;
-  private final BoundingBox connectorBounds;
-
-  private RedstoneSwitchRenderer() {
-    xForms = RedstoneSwitchBounds.getInstance().xForms;
-    switchBounds = RedstoneSwitchBounds.getInstance().switchBounds;
-    connectorBounds = RedstoneSwitchBounds.getInstance().connectorBounds;
-  }
-
-  @Override
-  public boolean isRendererForConduit(IConduit conduit) {
-    return conduit.getClass() == RedstoneSwitch.class;
-  }
-
-  @Override
-  public void renderEntity(ConduitBundleRenderer conduitBundleRenderer, IConduitBundle bundle, IConduit conduit, double x, double y, double z,
-      float partialTick,
-      float worldLight, RenderBlocks rb) {
-
-    super.renderEntity(conduitBundleRenderer, bundle, conduit, x, y, z, partialTick, worldLight, rb);
-
-    RedstoneSwitch sw = (RedstoneSwitch) conduit;
-
-    Tessellator tessellator = Tessellator.instance;
-    float selfIllum = Math.max(worldLight, conduit.getSelfIlluminationForState(null));
-    tessellator.setColorOpaque_F(selfIllum, selfIllum, selfIllum);
-
-    IIcon[] icons = new IIcon[6];
-    for (int i = 0; i < icons.length; i++) {
-      icons[i] = EnderIO.blockConduitBundle.getConnectorIcon(ConduitConnectorType.INTERNAL);
-    }
-    icons[3] = sw.getSwitchIcon();    
-
-    Vector3d trans = ConduitGeometryUtil.instance.getTranslation(ForgeDirection.UNKNOWN, bundle.getOffset(IRedstoneConduit.class, ForgeDirection.UNKNOWN));
-    BoundingBox bb = switchBounds.translate(trans);
-
-    for (VertexTransform tf : xForms) {
-      CubeRenderer.render(bb, icons, tf,null);
-    }
-    bb = connectorBounds.translate(trans);
-    for (VertexTransform tf : xForms) {
-      CubeRenderer.render(bb, icons[0], tf);
+    public static RedstoneSwitchRenderer getInstance() {
+        return instance;
     }
 
-  }
+    private final VertexTransform[] xForms;
+    private final BoundingBox switchBounds;
+    private final BoundingBox connectorBounds;
 
-  @Override
-  protected boolean renderComponent(CollidableComponent component) {
-    return !RedstoneSwitch.SWITCH_TAG.equals(component.data);
-  }
+    private RedstoneSwitchRenderer() {
+        xForms = RedstoneSwitchBounds.getInstance().xForms;
+        switchBounds = RedstoneSwitchBounds.getInstance().switchBounds;
+        connectorBounds = RedstoneSwitchBounds.getInstance().connectorBounds;
+    }
 
+    @Override
+    public boolean isRendererForConduit(IConduit conduit) {
+        return conduit.getClass() == RedstoneSwitch.class;
+    }
+
+    @Override
+    public void renderEntity(ConduitBundleRenderer conduitBundleRenderer, IConduitBundle bundle, IConduit conduit,
+            double x, double y, double z, float partialTick, float worldLight, RenderBlocks rb) {
+
+        super.renderEntity(conduitBundleRenderer, bundle, conduit, x, y, z, partialTick, worldLight, rb);
+
+        RedstoneSwitch sw = (RedstoneSwitch) conduit;
+
+        Tessellator tessellator = Tessellator.instance;
+        float selfIllum = Math.max(worldLight, conduit.getSelfIlluminationForState(null));
+        tessellator.setColorOpaque_F(selfIllum, selfIllum, selfIllum);
+
+        IIcon[] icons = new IIcon[6];
+        for (int i = 0; i < icons.length; i++) {
+            icons[i] = EnderIO.blockConduitBundle.getConnectorIcon(ConduitConnectorType.INTERNAL);
+        }
+        icons[3] = sw.getSwitchIcon();
+
+        Vector3d trans = ConduitGeometryUtil.instance.getTranslation(
+                ForgeDirection.UNKNOWN,
+                bundle.getOffset(IRedstoneConduit.class, ForgeDirection.UNKNOWN));
+        BoundingBox bb = switchBounds.translate(trans);
+
+        for (VertexTransform tf : xForms) {
+            CubeRenderer.render(bb, icons, tf, null);
+        }
+        bb = connectorBounds.translate(trans);
+        for (VertexTransform tf : xForms) {
+            CubeRenderer.render(bb, icons[0], tf);
+        }
+    }
+
+    @Override
+    protected boolean renderComponent(CollidableComponent component) {
+        return !RedstoneSwitch.SWITCH_TAG.equals(component.data);
+    }
 }

@@ -18,47 +18,46 @@ import crazypants.enderio.ModObject;
  */
 public class ItemPowerItemFilter extends Item implements IItemFilterUpgrade, IResourceTooltipProvider {
 
-  public static ItemPowerItemFilter create() {
-    ItemPowerItemFilter result = new ItemPowerItemFilter();
-    result.init();
-    return result;
-  }
-
-  protected ItemPowerItemFilter() {
-    setCreativeTab(EnderIOTab.tabEnderIO);
-    setUnlocalizedName(ModObject.itemPowerItemFilter.unlocalisedName);
-    setHasSubtypes(true);
-    setMaxDamage(0);
-    setMaxStackSize(64);
-  }
-
-  protected void init() {
-    GameRegistry.registerItem(this, ModObject.itemPowerItemFilter.unlocalisedName);
-  }
-
-  @Override
-  public IItemFilter createFilterFromStack(ItemStack stack) {
-    IItemFilter filter = new PowerItemFilter();
-    if(stack.stackTagCompound != null && stack.stackTagCompound.hasKey("filter")) {
-      filter.readFromNBT(stack.stackTagCompound.getCompoundTag("filter"));
+    public static ItemPowerItemFilter create() {
+        ItemPowerItemFilter result = new ItemPowerItemFilter();
+        result.init();
+        return result;
     }
-    return filter;
-  }
 
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IIconRegister IIconRegister) {
-    itemIcon = IIconRegister.registerIcon("enderio:filterUpgradePower");
-  }
+    protected ItemPowerItemFilter() {
+        setCreativeTab(EnderIOTab.tabEnderIO);
+        setUnlocalizedName(ModObject.itemPowerItemFilter.unlocalisedName);
+        setHasSubtypes(true);
+        setMaxDamage(0);
+        setMaxStackSize(64);
+    }
 
-  @Override
-  public String getUnlocalizedName(ItemStack stack) {
-    return getUnlocalizedName();
-  }
+    protected void init() {
+        GameRegistry.registerItem(this, ModObject.itemPowerItemFilter.unlocalisedName);
+    }
 
-  @Override
-  public String getUnlocalizedNameForTooltip(ItemStack stack) {
-    return getUnlocalizedName();
-  }
+    @Override
+    public IItemFilter createFilterFromStack(ItemStack stack) {
+        IItemFilter filter = new PowerItemFilter();
+        if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("filter")) {
+            filter.readFromNBT(stack.stackTagCompound.getCompoundTag("filter"));
+        }
+        return filter;
+    }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister IIconRegister) {
+        itemIcon = IIconRegister.registerIcon("enderio:filterUpgradePower");
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return getUnlocalizedName();
+    }
+
+    @Override
+    public String getUnlocalizedNameForTooltip(ItemStack stack) {
+        return getUnlocalizedName();
+    }
 }

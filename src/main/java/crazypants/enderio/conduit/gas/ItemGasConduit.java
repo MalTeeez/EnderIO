@@ -21,61 +21,60 @@ import crazypants.enderio.gui.IconEIO;
 
 public class ItemGasConduit extends AbstractItemConduit implements IAdvancedTooltipProvider {
 
-  private static ItemConduitSubtype[] subtypes = new ItemConduitSubtype[] {
-      new ItemConduitSubtype(ModObject.itemGasConduit.name(), "enderio:itemGasConduit"),
-  };
+    private static ItemConduitSubtype[] subtypes = new ItemConduitSubtype[] {
+            new ItemConduitSubtype(ModObject.itemGasConduit.name(), "enderio:itemGasConduit"), };
 
-  public static ItemGasConduit create() {
-    ItemGasConduit result = new ItemGasConduit();
-    if (GasUtil.isGasConduitEnabled()) {
-      result.init();
-      ConduitDisplayMode.registerDisplayMode(new ConduitDisplayMode(IGasConduit.class, IconEIO.WRENCH_OVERLAY_GAS, IconEIO.WRENCH_OVERLAY_GAS_OFF));
+    public static ItemGasConduit create() {
+        ItemGasConduit result = new ItemGasConduit();
+        if (GasUtil.isGasConduitEnabled()) {
+            result.init();
+            ConduitDisplayMode.registerDisplayMode(
+                    new ConduitDisplayMode(
+                            IGasConduit.class,
+                            IconEIO.WRENCH_OVERLAY_GAS,
+                            IconEIO.WRENCH_OVERLAY_GAS_OFF));
+        }
+        return result;
     }
-    return result;
-  }
 
-  protected ItemGasConduit() {
-    super(ModObject.itemGasConduit, subtypes);
-    if(!GasUtil.isGasConduitEnabled()) {
-      setCreativeTab(null);
+    protected ItemGasConduit() {
+        super(ModObject.itemGasConduit, subtypes);
+        if (!GasUtil.isGasConduitEnabled()) {
+            setCreativeTab(null);
+        }
     }
-  }
 
-  @Override
-  public Class<? extends IConduit> getBaseConduitType() {
-    return IGasConduit.class;
-  }
+    @Override
+    public Class<? extends IConduit> getBaseConduitType() {
+        return IGasConduit.class;
+    }
 
-  @Override
-  public IConduit createConduit(ItemStack stack, EntityPlayer player) {
-    return new GasConduit();
-  }
+    @Override
+    public IConduit createConduit(ItemStack stack, EntityPlayer player) {
+        return new GasConduit();
+    }
 
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void addCommonEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {
-  }
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addCommonEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {}
 
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void addBasicEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addBasicEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {}
 
-  }
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addDetailedEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {
+        String gpt = " " + EnderIO.lang.localize("gas.gasTick");
+        int extractRate = Config.gasConduitExtractRate;
+        int maxIo = Config.gasConduitMaxIoRate;
+        list.add(EnderIO.lang.localize("itemGasConduit.tooltip.maxExtract") + " " + extractRate + gpt);
+        list.add(EnderIO.lang.localize("itemGasConduit.tooltip.maxIo") + " " + maxIo + gpt);
+        SpecialTooltipHandler.addDetailedTooltipFromResources(list, "enderio.itemGasConduit");
+    }
 
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void addDetailedEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {
-    String gpt = " " + EnderIO.lang.localize("gas.gasTick");
-    int extractRate = Config.gasConduitExtractRate;
-    int maxIo = Config.gasConduitMaxIoRate;
-    list.add(EnderIO.lang.localize("itemGasConduit.tooltip.maxExtract") + " " + extractRate + gpt);
-    list.add(EnderIO.lang.localize("itemGasConduit.tooltip.maxIo") + " " + maxIo + gpt);
-    SpecialTooltipHandler.addDetailedTooltipFromResources(list, "enderio.itemGasConduit");
-  }
-  
-  @Override
-  public boolean shouldHideFacades(ItemStack stack, EntityPlayer player) {
-    return true;
-  }
-
+    @Override
+    public boolean shouldHideFacades(ItemStack stack, EntityPlayer player) {
+        return true;
+    }
 }

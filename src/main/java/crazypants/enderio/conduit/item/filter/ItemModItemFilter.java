@@ -21,52 +21,53 @@ import crazypants.enderio.conduit.item.FilterRegister;
 
 public class ItemModItemFilter extends Item implements IItemFilterUpgrade, IResourceTooltipProvider {
 
-  public static ItemModItemFilter create() {
-    ItemModItemFilter result = new ItemModItemFilter();
-    result.init();
-    return result;
-  }
-
-  protected ItemModItemFilter() {
-    setCreativeTab(EnderIOTab.tabEnderIO);
-    setUnlocalizedName(ModObject.itemModItemFilter.unlocalisedName);
-    setMaxDamage(0);
-    setMaxStackSize(64);
-  }
-
-  protected void init() {
-    GameRegistry.registerItem(this, ModObject.itemModItemFilter.unlocalisedName);
-  }
-
-  @Override
-  public IItemFilter createFilterFromStack(ItemStack stack) {
-    IItemFilter filter = new ModItemFilter();
-    if(stack.stackTagCompound != null && stack.stackTagCompound.hasKey("filter")) {
-      filter.readFromNBT(stack.stackTagCompound.getCompoundTag("filter"));
+    public static ItemModItemFilter create() {
+        ItemModItemFilter result = new ItemModItemFilter();
+        result.init();
+        return result;
     }
-    return filter;
-  }
 
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IIconRegister IIconRegister) {
-    itemIcon = IIconRegister.registerIcon("enderio:modItemFilter");
-  }
-
-  @Override
-  public String getUnlocalizedNameForTooltip(ItemStack stack) {
-    return getUnlocalizedName();
-  }
-
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-    if(FilterRegister.isFilterSet(par1ItemStack)) {
-      if(SpecialTooltipHandler.showAdvancedTooltips()) {
-        par3List.add(EnumChatFormatting.ITALIC + EnderIO.lang.localize("itemConduitFilterUpgrade.configured"));
-        par3List.add(EnumChatFormatting.ITALIC + EnderIO.lang.localize("itemConduitFilterUpgrade.clearConfigMethod"));
-      }
+    protected ItemModItemFilter() {
+        setCreativeTab(EnderIOTab.tabEnderIO);
+        setUnlocalizedName(ModObject.itemModItemFilter.unlocalisedName);
+        setMaxDamage(0);
+        setMaxStackSize(64);
     }
-  }
 
+    protected void init() {
+        GameRegistry.registerItem(this, ModObject.itemModItemFilter.unlocalisedName);
+    }
+
+    @Override
+    public IItemFilter createFilterFromStack(ItemStack stack) {
+        IItemFilter filter = new ModItemFilter();
+        if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("filter")) {
+            filter.readFromNBT(stack.stackTagCompound.getCompoundTag("filter"));
+        }
+        return filter;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister IIconRegister) {
+        itemIcon = IIconRegister.registerIcon("enderio:modItemFilter");
+    }
+
+    @Override
+    public String getUnlocalizedNameForTooltip(ItemStack stack) {
+        return getUnlocalizedName();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        if (FilterRegister.isFilterSet(par1ItemStack)) {
+            if (SpecialTooltipHandler.showAdvancedTooltips()) {
+                par3List.add(EnumChatFormatting.ITALIC + EnderIO.lang.localize("itemConduitFilterUpgrade.configured"));
+                par3List.add(
+                        EnumChatFormatting.ITALIC
+                                + EnderIO.lang.localize("itemConduitFilterUpgrade.clearConfigMethod"));
+            }
+        }
+    }
 }

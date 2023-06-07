@@ -6,12 +6,11 @@ import com.enderio.core.common.util.BlockCoord;
 
 public interface IRanged {
 
-  World getWorld();
+    World getWorld();
 
-  BlockCoord getLocation();
+    BlockCoord getLocation();
 
-  float getRange();
+    float getRange();
 
-  boolean isShowingRange();
-
+    boolean isShowingRange();
 }

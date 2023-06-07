@@ -8,12 +8,11 @@ import crazypants.enderio.machine.RedstoneControlMode;
 
 public interface IExtractor extends IConduit {
 
-  void setExtractionRedstoneMode(RedstoneControlMode mode, ForgeDirection dir);
+    void setExtractionRedstoneMode(RedstoneControlMode mode, ForgeDirection dir);
 
-  RedstoneControlMode getExtractionRedstoneMode(ForgeDirection dir);
+    RedstoneControlMode getExtractionRedstoneMode(ForgeDirection dir);
 
-  void setExtractionSignalColor(ForgeDirection dir, DyeColor col);
+    void setExtractionSignalColor(ForgeDirection dir, DyeColor col);
 
-  DyeColor getExtractionSignalColor(ForgeDirection dir);
-
+    DyeColor getExtractionSignalColor(ForgeDirection dir);
 }

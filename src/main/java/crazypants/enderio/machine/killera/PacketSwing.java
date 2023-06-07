@@ -11,22 +11,19 @@ import crazypants.enderio.EnderIO;
 
 public class PacketSwing extends MessageTileEntity<TileKillerJoe> implements IMessageHandler<PacketSwing, IMessage> {
 
-  public PacketSwing() {
-  }
+    public PacketSwing() {}
 
-  public PacketSwing(TileKillerJoe tile) {
-    super(tile);
-  }
-
-  @Override
-  public IMessage onMessage(PacketSwing message, MessageContext ctx) {
-    EntityPlayer player = EnderIO.proxy.getClientPlayer();
-    TileKillerJoe tile = message.getTileEntity(player.worldObj);
-    if (tile != null) {
-      tile.swingWeapon();
+    public PacketSwing(TileKillerJoe tile) {
+        super(tile);
     }
-    return null;
-  }
 
-
+    @Override
+    public IMessage onMessage(PacketSwing message, MessageContext ctx) {
+        EntityPlayer player = EnderIO.proxy.getClientPlayer();
+        TileKillerJoe tile = message.getTileEntity(player.worldObj);
+        if (tile != null) {
+            tile.swingWeapon();
+        }
+        return null;
+    }
 }

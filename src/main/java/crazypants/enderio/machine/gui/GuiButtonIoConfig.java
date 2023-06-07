@@ -16,39 +16,40 @@ import crazypants.enderio.network.PacketHandler;
 
 public class GuiButtonIoConfig extends ToggleButton {
 
-  private final IIoConfigurable config;
-  private final GuiOverlayIoConfig configOverlay;
+    private final IIoConfigurable config;
+    private final GuiOverlayIoConfig configOverlay;
 
-  @SuppressWarnings("LeakingThisInConstructor")
-  public GuiButtonIoConfig(IGuiScreen gui, int id, int x, int y, IIoConfigurable config, GuiOverlayIoConfig configOverlay) {
-    super(gui, id, x, y, IconEIO.IO_CONFIG_UP, IconEIO.IO_CONFIG_DOWN);
-    this.config = config;
-    this.configOverlay = configOverlay;
-    this.configOverlay.setConfigB(this);
+    @SuppressWarnings("LeakingThisInConstructor")
+    public GuiButtonIoConfig(IGuiScreen gui, int id, int x, int y, IIoConfigurable config,
+            GuiOverlayIoConfig configOverlay) {
+        super(gui, id, x, y, IconEIO.IO_CONFIG_UP, IconEIO.IO_CONFIG_DOWN);
+        this.config = config;
+        this.configOverlay = configOverlay;
+        this.configOverlay.setConfigB(this);
 
-    String configTooltip = EnderIO.lang.localize("gui.machine.ioMode.overlay.tooltip");
-    setUnselectedToolTip(configTooltip);
+        String configTooltip = EnderIO.lang.localize("gui.machine.ioMode.overlay.tooltip");
+        setUnselectedToolTip(configTooltip);
 
-    ArrayList<String> list = new ArrayList<String>();
-    list.add(configTooltip);
-    SpecialTooltipHandler.addTooltipFromResources(list, "enderio.gui.machine.ioMode.overlay.tooltip.visible.line");
-    if(list.size() > 1) {
-      setSelectedToolTip(list.toArray(new String[list.size()]));
+        ArrayList<String> list = new ArrayList<String>();
+        list.add(configTooltip);
+        SpecialTooltipHandler.addTooltipFromResources(list, "enderio.gui.machine.ioMode.overlay.tooltip.visible.line");
+        if (list.size() > 1) {
+            setSelectedToolTip(list.toArray(new String[list.size()]));
+        }
     }
-  }
 
-  @Override
-  protected boolean toggleSelected() {
-    if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
-      if(!configOverlay.isVisible()) {
-        return false;
-      }
-      config.clearAllIoModes();
-      PacketHandler.INSTANCE.sendToServer(new PacketIoMode(config));
-    } else {
-      boolean vis = !configOverlay.isVisible();
-      configOverlay.setVisible(vis);
+    @Override
+    protected boolean toggleSelected() {
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
+            if (!configOverlay.isVisible()) {
+                return false;
+            }
+            config.clearAllIoModes();
+            PacketHandler.INSTANCE.sendToServer(new PacketIoMode(config));
+        } else {
+            boolean vis = !configOverlay.isVisible();
+            configOverlay.setVisible(vis);
+        }
+        return true;
     }
-    return true;
-  }
 }

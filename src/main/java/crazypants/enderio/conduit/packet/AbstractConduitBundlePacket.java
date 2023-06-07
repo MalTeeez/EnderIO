@@ -6,10 +6,9 @@ import com.enderio.core.common.network.MessageTileEntity;
 
 public abstract class AbstractConduitBundlePacket extends MessageTileEntity<TileEntity> {
 
-  public AbstractConduitBundlePacket() {
-  }
+    public AbstractConduitBundlePacket() {}
 
-  public AbstractConduitBundlePacket(TileEntity tile) {
-    super(tile);
-  }
+    public AbstractConduitBundlePacket(TileEntity tile) {
+        super(tile);
+    }
 }
