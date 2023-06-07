@@ -209,7 +209,8 @@ public class EnergyUpgrade extends AbstractUpgrade {
             return false;
         }
 
-        if (!(stack.getItem() instanceof IEndSteelItem) && up.unlocName.equals(EMPOWERED_FIVE.unlocName)) return false;
+        if (!(stack.getItem() instanceof IEndSteelItem) && up.unlocName.equals(EMPOWERED_FIVE.unlocName))
+            return false;
 
         return up.unlocName.equals(unlocName);
     }
@@ -232,37 +233,6 @@ public class EnergyUpgrade extends AbstractUpgrade {
         }
         list.addAll(upgradeStr);
     }
-<<<<<<< HEAD
-    list.addAll(upgradeStr);
-
-  }
-
-  @Override
-  public void writeUpgradeToNBT(NBTTagCompound upgradeRoot) {
-    upgradeRoot.setInteger(KEY_CAPACITY, capacity);
-    upgradeRoot.setInteger(KEY_ENERGY, energy);
-
-    upgradeRoot.setInteger(KEY_MAX_IN, maxInRF);
-    upgradeRoot.setInteger(KEY_MAX_OUT, maxOutRF);
-  }
-
-  public boolean isAbsorbDamageWithPower(ItemStack stack) {
-    boolean res= RANDOM.nextDouble() < getAbsorptionRatio(stack);
-    return res;
-  }
-
-  private double getAbsorptionRatio(ItemStack stack) {
-    AbstractUpgrade upgrade = loadFromItem(stack);
-    int index = 0;
-    if (upgrade.unlocName.equals(EMPOWERED_TWO.unlocName)) {
-      index = 0;
-    } else if (upgrade.unlocName.equals(EMPOWERED_THREE.unlocName)) {
-      index = 1;
-    } else if (upgrade.unlocName.equals(EMPOWERED_FOUR.unlocName)) {
-      index = 2;
-    } else if (upgrade.unlocName.equals(EMPOWERED_FIVE.unlocName)) {
-      index = 3;
-=======
 
     @Override
     public void writeUpgradeToNBT(NBTTagCompound upgradeRoot) {
@@ -271,7 +241,6 @@ public class EnergyUpgrade extends AbstractUpgrade {
 
         upgradeRoot.setInteger(KEY_MAX_IN, maxInRF);
         upgradeRoot.setInteger(KEY_MAX_OUT, maxOutRF);
->>>>>>> 5fdd24293a0a2c380e5bafa4258624661caeb76b
     }
 
     public boolean isAbsorbDamageWithPower(ItemStack stack) {

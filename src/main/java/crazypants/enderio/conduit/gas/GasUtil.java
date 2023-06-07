@@ -20,22 +20,9 @@ public final class GasUtil {
     public static final String API_NAME = "MekanismAPI|gas";
 
     public static boolean isGasConduitEnabled() {
-        if (!useCheckPerformed) {
-            if (Config.isGasConduitEnabled) {
-                isGasConduitEnabled = ModAPIManager.INSTANCE.hasAPI(API_NAME);
-            } else {
-                isGasConduitEnabled = false;
-            }
-            useCheckPerformed = true;
-        }
-        return isGasConduitEnabled;
+        isGasConduitEnabled = true;
+        return true;
     }
-<<<<<<< HEAD
-    isGasConduitEnabled = true;
-    return isGasConduitEnabled;
-  }
-=======
->>>>>>> 5fdd24293a0a2c380e5bafa4258624661caeb76b
 
     @Method(modid = API_NAME)
     public static IGasHandler getExternalGasHandler(IBlockAccess world, BlockCoord bc) {

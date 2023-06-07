@@ -161,61 +161,10 @@ public class ItemDarkSteelArmor extends ItemArmor
         }
         return 4;
     }
-<<<<<<< HEAD
-    return 0;
-  }
-
-  public static ItemDarkSteelArmor create(int armorType) {
-	  ItemDarkSteelArmor res = new ItemDarkSteelArmor(armorType);
-    res.init();
-    return res;
-  }
-
-  protected int powerPerDamagePoint;
-  protected String name;
-
-  public ItemDarkSteelArmor(int armorType) {
-    this(MATERIAL, "darkSteel", armorType);
-    powerPerDamagePoint = Config.darkSteelPowerStorageBase / MATERIAL.getDurability(armorType);
-
-  }
-
-  public ItemDarkSteelArmor(ArmorMaterial mat, String name, int armorType) {
-	    super(mat, 0, armorType);
-	    this.name = name;
-	    String str = name + "_" + NAMES[armorType];
-	    setUnlocalizedName(str);
-	    setTextureName(EnderIO.DOMAIN+ ":" + str);
-
-	  }
-
-  protected void init() {
-    GameRegistry.registerItem(this, getUnlocalizedName());
-  }
-
-  @SuppressWarnings({ "unchecked", "rawtypes" })
-  @Override
-  @SideOnly(Side.CLIENT)
-  public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List par3List) {
-    ItemStack is = new ItemStack(this);
-    par3List.add(is);
-
-    is = new ItemStack(this);
-    EnergyUpgrade.EMPOWERED_FOUR.writeToItem(is);
-    EnergyUpgrade.setPowerFull(is);
-
-    Iterator<IDarkSteelUpgrade> iter = DarkSteelRecipeManager.instance.recipeIterator();
-    while (iter.hasNext()) {
-      IDarkSteelUpgrade upgrade = iter.next();
-      if (!(upgrade instanceof EnergyUpgrade) && upgrade.canAddToItem(is)) {
-        upgrade.writeToItem(is);
-      }
-=======
 
     @Override
     public void addCommonEntries(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {
         DarkSteelRecipeManager.instance.addCommonTooltipEntries(itemstack, entityplayer, list, flag);
->>>>>>> 5fdd24293a0a2c380e5bafa4258624661caeb76b
     }
 
     @Override

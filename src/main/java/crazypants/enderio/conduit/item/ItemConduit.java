@@ -153,21 +153,11 @@ public class ItemConduit extends AbstractConduit implements IItemConduit {
             setInputFilter(entry.getKey(), null);
             setInputFilterUpgrade(entry.getKey(), entry.getValue());
         }
-
-<<<<<<< HEAD
-      for (Entry<ForgeDirection, IItemFilter> entry : inputFilters.entrySet()) {
-        if(entry.getValue() != null) {
-          IItemFilter f = entry.getValue();
-          if(f != null) {
-            setSpeedUpgrade(entry.getKey(), new ItemStack(EnderIO.itemExtractSpeedUpgrade, 21, 0));
-          }
-=======
         converted.clear();
         convertToItemUpgrades(filterMeta, converted, outputFilters);
         for (Entry<ForgeDirection, ItemStack> entry : converted.entrySet()) {
             setOutputFilter(entry.getKey(), null);
             setOutputFilterUpgrade(entry.getKey(), entry.getValue());
->>>>>>> 5fdd24293a0a2c380e5bafa4258624661caeb76b
         }
     }
 
