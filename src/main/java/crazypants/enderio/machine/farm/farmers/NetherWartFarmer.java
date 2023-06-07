@@ -13,22 +13,20 @@ import crazypants.enderio.machine.farm.TileFarmStation;
 
 public class NetherWartFarmer extends CustomSeedFarmer {
 
-  public NetherWartFarmer() {
-    super(Blocks.nether_wart, 3, new ItemStack(Items.nether_wart));
-  }
-
-  @Override
-  public boolean prepareBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta) {
-
-    if(!farm.isOpen(bc)) {
-      return false;
+    public NetherWartFarmer() {
+        super(Blocks.nether_wart, 3, new ItemStack(Items.nether_wart));
     }
-    World worldObj = farm.getWorldObj();
-    BlockCoord grn = bc.getLocation(ForgeDirection.DOWN);
-    Block blk = worldObj.getBlock(grn.x, grn.y, grn.z);
-    
-    return plantFromInventory(farm, bc);
-  }
 
+    @Override
+    public boolean prepareBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta) {
 
+        if (!farm.isOpen(bc)) {
+            return false;
+        }
+        World worldObj = farm.getWorldObj();
+        BlockCoord grn = bc.getLocation(ForgeDirection.DOWN);
+        Block blk = worldObj.getBlock(grn.x, grn.y, grn.z);
+
+        return plantFromInventory(farm, bc);
+    }
 }

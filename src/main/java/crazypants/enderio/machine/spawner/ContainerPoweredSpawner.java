@@ -14,38 +14,41 @@ import crazypants.enderio.machine.gui.AbstractMachineContainer;
 
 public class ContainerPoweredSpawner extends AbstractMachineContainer<TilePoweredSpawner> {
 
-  private Slot slotInput;
-  private Slot slotOutput;
+    private Slot slotInput;
+    private Slot slotOutput;
 
-  public ContainerPoweredSpawner(InventoryPlayer playerInv, TilePoweredSpawner te) {
-    super(playerInv, te);
-  }
+    public ContainerPoweredSpawner(InventoryPlayer playerInv, TilePoweredSpawner te) {
+        super(playerInv, te);
+    }
 
-  @Override
-  protected void addMachineSlots(InventoryPlayer playerInv) {
-    slotInput = addSlotToContainer(new Slot(getInv(), 0, 54, 42) {
-      @Override
-      public boolean isItemValid(ItemStack itemStack) {
-        return getInv().isItemValidForSlot(0, itemStack);
-      }
-    });
-    slotOutput = addSlotToContainer(new Slot(getInv(), 1, 105, 42) {
-      @Override
-      public boolean isItemValid(ItemStack itemStack) {
-        return false;
-      }
-    });
-  }
+    @Override
+    protected void addMachineSlots(InventoryPlayer playerInv) {
+        slotInput = addSlotToContainer(new Slot(getInv(), 0, 54, 42) {
 
-  public void createGhostSlots(List<GhostSlot> slots) {
-    final GhostBackgroundItemSlot ghostBackgroundItemSlot = new GhostBackgroundItemSlot(EnderIO.itemSoulVessel, slotInput);
-    ghostBackgroundItemSlot.y = 42;
-    slots.add(ghostBackgroundItemSlot);
-  }
+            @Override
+            public boolean isItemValid(ItemStack itemStack) {
+                return getInv().isItemValidForSlot(0, itemStack);
+            }
+        });
+        slotOutput = addSlotToContainer(new Slot(getInv(), 1, 105, 42) {
 
-  public void setSlotVisibility(boolean visible) {
-    slotInput.yDisplayPosition = visible ? 42 : -3000;
-    slotOutput.yDisplayPosition = visible ? 42 : -3000;
-  }
+            @Override
+            public boolean isItemValid(ItemStack itemStack) {
+                return false;
+            }
+        });
+    }
 
+    public void createGhostSlots(List<GhostSlot> slots) {
+        final GhostBackgroundItemSlot ghostBackgroundItemSlot = new GhostBackgroundItemSlot(
+                EnderIO.itemSoulVessel,
+                slotInput);
+        ghostBackgroundItemSlot.y = 42;
+        slots.add(ghostBackgroundItemSlot);
+    }
+
+    public void setSlotVisibility(boolean visible) {
+        slotInput.yDisplayPosition = visible ? 42 : -3000;
+        slotOutput.yDisplayPosition = visible ? 42 : -3000;
+    }
 }

@@ -8,7 +8,7 @@ import com.enderio.core.common.util.BlockCoord;
 
 public interface IHarvestResult {
 
-  List<EntityItem> getDrops();
-  List<BlockCoord> getHarvestedBlocks();
+    List<EntityItem> getDrops();
 
+    List<BlockCoord> getHarvestedBlocks();
 }

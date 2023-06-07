@@ -6,8 +6,7 @@ import crazypants.enderio.api.tool.ITool;
 
 public interface IToolImpl {
 
-  Class<?> getInterface();
+    Class<?> getInterface();
 
-  Object handleMethod(ITool yetaWrench, Method method, Object[] args);
-
+    Object handleMethod(ITool yetaWrench, Method method, Object[] args);
 }

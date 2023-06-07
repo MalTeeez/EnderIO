@@ -6,15 +6,15 @@ import net.minecraft.item.ItemStack;
 
 public interface ISoulBinderRecipe {
 
-  ItemStack getInputStack();
-  
-  ItemStack getOutputStack();
-  
-  List<String> getSupportedSouls();
-  
-  int getEnergyRequired();
-  
-  int getExperienceLevelsRequired();
+    ItemStack getInputStack();
 
-  int getExperienceRequired();
+    ItemStack getOutputStack();
+
+    List<String> getSupportedSouls();
+
+    int getEnergyRequired();
+
+    int getExperienceLevelsRequired();
+
+    int getExperienceRequired();
 }

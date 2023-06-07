@@ -1,6 +1,11 @@
 package crazypants.enderio.machine.farm.farmers;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import com.enderio.core.common.util.BlockCoord;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import crazypants.enderio.Log;
 import crazypants.enderio.machine.farm.TileFarmStation;
@@ -8,11 +13,9 @@ import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class ForestryFarmer implements IFarmerJoe {
+
     private ITreeRoot root;
     private Item forestrySapling;
 
@@ -36,7 +39,7 @@ public class ForestryFarmer implements IFarmerJoe {
     public boolean canPlant(ItemStack stack) {
         return stack != null && stack.getItem() == forestrySapling && root.getType(stack) == EnumGermlingType.SAPLING;
     }
-    
+
     @Override
     public boolean prepareBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta) {
         ItemStack sapling = farm.getSeedTypeInSuppliesFor(bc);
@@ -47,22 +50,15 @@ public class ForestryFarmer implements IFarmerJoe {
             return true;
         }
         return false;
-
     }
 
     @Override
     public boolean canHarvest(TileFarmStation farm, BlockCoord bc, Block block, int meta) {
         return false;
     }
-    
 
     @Override
     public IHarvestResult harvestBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta) {
         return null;
     }
-
-
-
-
-
 }

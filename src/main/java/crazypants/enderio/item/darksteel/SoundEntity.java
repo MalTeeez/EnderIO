@@ -11,43 +11,39 @@ import crazypants.enderio.config.Config;
 
 public class SoundEntity extends Entity {
 
-  int lifeSpan = Config.darkSteelSoundLocatorLifespan;
-  float volume;
+    int lifeSpan = Config.darkSteelSoundLocatorLifespan;
+    float volume;
 
-  public SoundEntity(World world, Vector3d pos, float volume) {
-    super(world);
-    setPosition(pos.x, pos.y, pos.z);
-    this.volume = volume;
-  }
-
-  @Override
-  protected void entityInit() {
-  }
-
-  protected boolean canTriggerWalking() {
-    return false;
-  }
-
-  @Override
-  public AxisAlignedBB getBoundingBox() {
-    return null;
-  }
-
-  @Override
-  public void onUpdate() {
-    super.onUpdate();
-    lifeSpan--;
-    if(lifeSpan == 0) {
-      setDead();
+    public SoundEntity(World world, Vector3d pos, float volume) {
+        super(world);
+        setPosition(pos.x, pos.y, pos.z);
+        this.volume = volume;
     }
-  }
 
-  @Override
-  protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-  }
+    @Override
+    protected void entityInit() {}
 
-  @Override
-  protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-  }
+    protected boolean canTriggerWalking() {
+        return false;
+    }
 
+    @Override
+    public AxisAlignedBB getBoundingBox() {
+        return null;
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        lifeSpan--;
+        if (lifeSpan == 0) {
+            setDead();
+        }
+    }
+
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {}
+
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {}
 }

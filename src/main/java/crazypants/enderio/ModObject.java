@@ -1,131 +1,133 @@
 package crazypants.enderio;
 
 public enum ModObject {
-  // Enderface
-  blockEnderIo,
-  itemEnderface,
 
-  // Conduits
-  blockConduitBundle,
-  blockConduitFacade,
-  itemConduitFacade,
-  itemRedstoneConduit,
-  itemItemConduit,
-  itemGasConduit,
-  itemMEConduit,
-  itemOCConduit,
-  itemBasicFilterUpgrade,
-  itemBigFilterUpgrade,
-  itemExistingItemFilter,
-  itemModItemFilter,
-  itemPowerItemFilter,
-  itemExtractSpeedUpgrade,
-  itemFunctionUpgrade,
+    // Enderface
+    blockEnderIo,
+    itemEnderface,
 
-  // Power
-  itemPowerConduit,
-  itemPowerConduitEndergy,
+    // Conduits
+    blockConduitBundle,
+    blockConduitFacade,
+    itemConduitFacade,
+    itemRedstoneConduit,
+    itemItemConduit,
+    itemGasConduit,
+    itemMEConduit,
+    itemOCConduit,
+    itemBasicFilterUpgrade,
+    itemBigFilterUpgrade,
+    itemExistingItemFilter,
+    itemModItemFilter,
+    itemPowerItemFilter,
+    itemExtractSpeedUpgrade,
+    itemFunctionUpgrade,
 
-  // Liquid
-  itemLiquidConduit,
+    // Power
+    itemPowerConduit,
+    itemPowerConduitEndergy,
 
-  // Materials
-  itemBasicCapacitor,
-  itemAlloy,
-  itemAlloyEndergy,
-  itemGrindingBall,
-  itemGrindingBallEndergy,
-  itemMaterial,
-  itemMachinePart,
-  itemPowderIngot,
-  blockFusedQuartz,
-  itemFusedQuartzFrame,
-  blockDarkIronBars,
-  blockSoulariumBars,
-  blockEndSteelBars,
+    // Liquid
+    itemLiquidConduit,
 
-  // Machines
-  blockStirlingGenerator,
-  blockCombustionGenerator,
-  blockZombieGenerator,
-  blockFrankenzombieGenerator,
-  blockEnderGenerator,
-  blockReservoir,
-  blockAlloySmelter,
-  blockSolarPanel,
-  blockCapacitorBank,
-  blockCapBank,
-  blockSagMill,
-  blockHyperCube,
-  blockPowerMonitor,
-  blockVat,
-  blockFarmStation,
-  blockTank,
-  blockCrafter,
-  blockVacuumChest,
-  blockWirelessCharger,
-  blockEnchanter,
-  blockSoulBinder,
-  blockSliceAndSplice,
-  blockAttractor,
-  blockSpawnGuard,
-  blockExperienceObelisk,
-  blockWeatherObelisk,
-  blockInhibitorObelisk,
-  blockTransceiver,
-  blockBuffer,
-  blockInventoryPanel,
+    // Materials
+    itemBasicCapacitor,
+    itemAlloy,
+    itemAlloyEndergy,
+    itemGrindingBall,
+    itemGrindingBallEndergy,
+    itemMaterial,
+    itemMachinePart,
+    itemPowderIngot,
+    blockFusedQuartz,
+    itemFusedQuartzFrame,
+    blockDarkIronBars,
+    blockSoulariumBars,
+    blockEndSteelBars,
 
-  blockPoweredSpawner,
-  itemBrokenSpawner,
+    // Machines
+    blockStirlingGenerator,
+    blockCombustionGenerator,
+    blockZombieGenerator,
+    blockFrankenzombieGenerator,
+    blockEnderGenerator,
+    blockReservoir,
+    blockAlloySmelter,
+    blockSolarPanel,
+    blockCapacitorBank,
+    blockCapBank,
+    blockSagMill,
+    blockHyperCube,
+    blockPowerMonitor,
+    blockVat,
+    blockFarmStation,
+    blockTank,
+    blockCrafter,
+    blockVacuumChest,
+    blockWirelessCharger,
+    blockEnchanter,
+    blockSoulBinder,
+    blockSliceAndSplice,
+    blockAttractor,
+    blockSpawnGuard,
+    blockExperienceObelisk,
+    blockWeatherObelisk,
+    blockInhibitorObelisk,
+    blockTransceiver,
+    blockBuffer,
+    blockInventoryPanel,
 
-  blockKillerJoe,
+    blockPoweredSpawner,
+    itemBrokenSpawner,
 
-  blockElectricLight,
-  blockLightNode,
-  blockLight,
+    blockKillerJoe,
 
-  //Blocks
-  blockDarkSteelPressurePlate,
-  blockDarkSteelAnvil,
-  blockDarkSteelLadder,
-  blockReinforcedObsidian,
-  blockIngotStorage,
-  blockIngotStorageEndergy,
+    blockElectricLight,
+    blockLightNode,
+    blockLight,
 
-  // Painter
-  blockPainter,
-  blockPaintedFence,
-  blockPaintedFenceGate,
-  blockPaintedWall,
-  blockPaintedStair,
-  blockPaintedSlab,
-  blockPaintedDoubleSlab,
-  blockPaintedGlowstone,
-  blockPaintedCarpet,
+    // Blocks
+    blockDarkSteelPressurePlate,
+    blockDarkSteelAnvil,
+    blockDarkSteelLadder,
+    blockReinforcedObsidian,
+    blockIngotStorage,
+    blockIngotStorageEndergy,
 
-  itemConduitProbe,
-  itemYetaWrench,
-  itemXpTransfer,
+    // Painter
+    blockPainter,
+    blockPaintedFence,
+    blockPaintedFenceGate,
+    blockPaintedWall,
+    blockPaintedStair,
+    blockPaintedSlab,
+    blockPaintedDoubleSlab,
+    blockPaintedGlowstone,
+    blockPaintedCarpet,
 
-  blockTravelAnchor,
-  blockTelePad,
-  itemCoordSelector,
-  itemTravelStaff,
-  itemMagnet,
-  itemGliderWing,
-  blockEndermanSkull,
-  itemSoulVessel,
-  itemFrankenSkull,
+    itemConduitProbe,
+    itemYetaWrench,
+    itemXpTransfer,
 
-  blockEnderRail,
+    blockTravelAnchor,
+    blockTelePad,
+    itemCoordSelector,
+    itemTravelStaff,
+    itemMagnet,
+    itemGliderWing,
+    blockEndermanSkull,
+    itemSoulVessel,
+    itemFrankenSkull,
 
-  itemEnderFood;
+    blockEnderRail,
 
-  public final String unlocalisedName;
+    itemEnderFood,
 
-  private ModObject() {
-    unlocalisedName = name();
-  }
+    itemTeleportStaff;
 
+    public final String unlocalisedName;
+
+    private ModObject() {
+        unlocalisedName = name();
+    }
 }

@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.GridNotification;
 import appeng.api.networking.IGrid;
@@ -14,64 +15,70 @@ import appeng.api.util.DimensionalCoord;
 
 public class MEConduitGrid implements IGridBlock {
 
-  private final IMEConduit conduit;
+    private final IMEConduit conduit;
 
-  public MEConduitGrid(IMEConduit conduit) {
-    this.conduit = conduit;
-  }
+    public MEConduitGrid(IMEConduit conduit) {
+        this.conduit = conduit;
+    }
 
-  @Override
-  public double getIdlePowerUsage() {
-    return 0;
-  }
+    @Override
+    public double getIdlePowerUsage() {
+        return 0;
+    }
 
-  @Override
-  public AEColor getGridColor() {
-    return AEColor.Transparent;
-  }
+    @Override
+    public AEColor getGridColor() {
+        return AEColor.Transparent;
+    }
 
-  @Override
-  public EnumSet<ForgeDirection> getConnectableSides() {
-    return conduit.getConnections();
-  }
+    @Override
+    public EnumSet<ForgeDirection> getConnectableSides() {
+        return conduit.getConnections();
+    }
 
-  @Override
-  public ItemStack getMachineRepresentation() {
-    return conduit.createItem();
-  }
+    @Override
+    public ItemStack getMachineRepresentation() {
+        return conduit.createItem();
+    }
 
-  @Override
-  public EnumSet<GridFlags> getFlags() {
-    return conduit.isDense() ? EnumSet.of(GridFlags.DENSE_CAPACITY) : EnumSet.noneOf(GridFlags.class);
-  }
-  
-  @Override
-  public boolean isWorldAccessible() {
-    return true;
-  }
+    @Override
+    public EnumSet<GridFlags> getFlags() {
+        if (conduit.isDenseUltra()) {
+            return EnumSet.of(GridFlags.ULTRA_DENSE_CAPACITY);
+        }
+        if (conduit.isDense()) {
+            return EnumSet.of(GridFlags.DENSE_CAPACITY);
+        }
+        return EnumSet.noneOf(GridFlags.class);
+    }
 
-  @Override
-  public DimensionalCoord getLocation() {
-    return new DimensionalCoord(conduit.getBundle().getEntity());
-  }
+    @Override
+    public boolean isWorldAccessible() {
+        return true;
+    }
 
-  @Override
-  public void onGridNotification(GridNotification notification) {
-    ;
-  }
+    @Override
+    public DimensionalCoord getLocation() {
+        return new DimensionalCoord(conduit.getBundle().getEntity());
+    }
 
-  @Override
-  public void setNetworkStatus(IGrid grid, int channelsInUse) {
-    ;
-  }
+    @Override
+    public void onGridNotification(GridNotification notification) {
+        ;
+    }
 
-  @Override
-  public IGridHost getMachine() {
-    return conduit.getBundle();
-  }
+    @Override
+    public void setNetworkStatus(IGrid grid, int channelsInUse) {
+        ;
+    }
 
-  @Override
-  public void gridChanged() {
-    conduit.onNeighborBlockChange(null);
-  }
+    @Override
+    public IGridHost getMachine() {
+        return conduit.getBundle();
+    }
+
+    @Override
+    public void gridChanged() {
+        conduit.onNeighborBlockChange(null);
+    }
 }

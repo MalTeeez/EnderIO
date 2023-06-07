@@ -1,6 +1,5 @@
 package crazypants.enderio.machine.farm.farmers;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -10,12 +9,11 @@ import crazypants.enderio.machine.farm.TileFarmStation;
 
 public interface IFarmerJoe {
 
-  boolean prepareBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta);
+    boolean prepareBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta);
 
-  boolean canHarvest(TileFarmStation farm, BlockCoord bc, Block block, int meta);
+    boolean canHarvest(TileFarmStation farm, BlockCoord bc, Block block, int meta);
 
-  boolean canPlant(ItemStack stack);
+    boolean canPlant(ItemStack stack);
 
-  IHarvestResult harvestBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta);
-
+    IHarvestResult harvestBlock(TileFarmStation farm, BlockCoord bc, Block block, int meta);
 }

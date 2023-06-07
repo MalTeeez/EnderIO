@@ -4,22 +4,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import li.cil.oc.api.network.Environment;
-import li.cil.oc.api.network.SidedEnvironment;
-import li.cil.oc.api.network.Node;
-import mekanism.api.gas.IGasHandler;
-import mods.immibis.microblocks.api.IMicroblockSupporterTile;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
-import appeng.api.networking.IGridHost;
-import cofh.api.transport.IItemDuct;
 
 import com.enderio.core.common.util.BlockCoord;
 
+import appeng.api.networking.IGridHost;
+import cofh.api.transport.IItemDuct;
 import cpw.mods.fml.common.Optional.Interface;
 import cpw.mods.fml.common.Optional.InterfaceList;
 import cpw.mods.fml.relauncher.Side;
@@ -28,97 +23,99 @@ import crazypants.enderio.conduit.facade.ItemConduitFacade.FacadeType;
 import crazypants.enderio.conduit.geom.CollidableComponent;
 import crazypants.enderio.conduit.geom.Offset;
 import crazypants.enderio.power.IInternalPowerHandler;
+import li.cil.oc.api.network.Environment;
+import li.cil.oc.api.network.SidedEnvironment;
+import mekanism.api.gas.IGasHandler;
+import mods.immibis.microblocks.api.IMicroblockSupporterTile;
 
-@InterfaceList({
-    @Interface(iface = "appeng.api.networking.IGridHost", modid = "appliedenergistics2"),
-    @Interface(iface = "mekanism.api.gas.IGasHandler", modid = "MekanismAPI|gas"),
-    @Interface(iface = "mods.immibis.microblocks.api.IMicroblockSupporterTile", modid = "ImmibisMicroblocks"),
-    @Interface(iface = "li.cil.oc.api.network.Environment", modid = "OpenComputersAPI|Network"),
-    @Interface(iface = "li.cil.oc.api.network.SidedEnvironment", modid = "OpenComputersAPI|Network")
-})
+@InterfaceList({ @Interface(iface = "appeng.api.networking.IGridHost", modid = "appliedenergistics2"),
+        @Interface(iface = "mekanism.api.gas.IGasHandler", modid = "MekanismAPI|gas"),
+        @Interface(iface = "mods.immibis.microblocks.api.IMicroblockSupporterTile", modid = "ImmibisMicroblocks"),
+        @Interface(iface = "li.cil.oc.api.network.Environment", modid = "OpenComputersAPI|Network"),
+        @Interface(iface = "li.cil.oc.api.network.SidedEnvironment", modid = "OpenComputersAPI|Network") })
 public interface IConduitBundle extends IInternalPowerHandler, IFluidHandler, IItemDuct, IGasHandler, IGridHost,
-    IMicroblockSupporterTile, Environment, SidedEnvironment {
+        IMicroblockSupporterTile, Environment, SidedEnvironment {
 
-  TileEntity getEntity();
+    TileEntity getEntity();
 
-  @Override
-  BlockCoord getLocation();
+    @Override
+    BlockCoord getLocation();
 
-  // conduits
+    // conduits
 
-  boolean hasType(Class<? extends IConduit> type);
+    boolean hasType(Class<? extends IConduit> type);
 
-  <T extends IConduit> T getConduit(Class<T> type);
+    <T extends IConduit> T getConduit(Class<T> type);
 
-  void addConduit(IConduit conduit);
+    void addConduit(IConduit conduit);
 
-  void removeConduit(IConduit conduit);
+    void removeConduit(IConduit conduit);
 
-  Collection<IConduit> getConduits();
+    Collection<IConduit> getConduits();
 
-  Offset getOffset(Class<? extends IConduit> type, ForgeDirection dir);
+    Offset getOffset(Class<? extends IConduit> type, ForgeDirection dir);
 
-  // connections
+    // connections
 
-  Set<ForgeDirection> getConnections(Class<? extends IConduit> type);
+    Set<ForgeDirection> getConnections(Class<? extends IConduit> type);
 
-  boolean containsConnection(Class<? extends IConduit> type, ForgeDirection west);
+    boolean containsConnection(Class<? extends IConduit> type, ForgeDirection west);
 
-  Set<ForgeDirection> getAllConnections();
+    Set<ForgeDirection> getAllConnections();
 
-  boolean containsConnection(ForgeDirection dir);
+    boolean containsConnection(ForgeDirection dir);
 
-  //geometry
+    // geometry
 
-  List<CollidableComponent> getCollidableComponents();
+    List<CollidableComponent> getCollidableComponents();
 
-  List<CollidableComponent> getConnectors();
+    List<CollidableComponent> getConnectors();
 
-  // events
+    // events
 
-  void onNeighborBlockChange(Block blockId);
-  
-  void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ);
+    void onNeighborBlockChange(Block blockId);
 
-  void onBlockRemoved();
+    void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ);
 
-  void dirty();
+    void onBlockRemoved();
 
-  // Facade
+    void dirty();
 
-  enum FacadeRenderState {
-    NONE,
-    FULL,
-    WIRE_FRAME
-  }
+    // Facade
 
-  @SideOnly(Side.CLIENT)
-  FacadeRenderState getFacadeRenderedAs();
+    enum FacadeRenderState {
+        NONE,
+        FULL,
+        WIRE_FRAME
+    }
 
-  @SideOnly(Side.CLIENT)
-  void setFacadeRenderAs(FacadeRenderState state);
+    @SideOnly(Side.CLIENT)
+    FacadeRenderState getFacadeRenderedAs();
 
-  int getLightOpacity();
+    @SideOnly(Side.CLIENT)
+    void setFacadeRenderAs(FacadeRenderState state);
 
-  void setLightOpacity(int opacity);
+    int getLightOpacity();
 
-  boolean hasFacade();
+    void setLightOpacity(int opacity);
 
-  void setFacadeId(Block block);
+    boolean hasFacade();
 
-  void setFacadeId(Block block, boolean triggerUpdate);
+    void setFacadeId(Block block);
 
-  void setFacadeMetadata(int meta);
+    void setFacadeId(Block block, boolean triggerUpdate);
 
-  void setFacadeType(FacadeType type);
+    void setFacadeMetadata(int meta);
 
-  Block getFacadeId();
+    void setFacadeType(FacadeType type);
 
-  int getFacadeMetadata();
+    Block getFacadeId();
 
-  FacadeType getFacadeType();
+    int getFacadeMetadata();
 
-  World getWorld();
+    FacadeType getFacadeType();
 
-  void setGridNode(Object node);
+    World getWorld();
+
+    void setGridNode(Object node);
 }

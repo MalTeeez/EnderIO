@@ -13,48 +13,60 @@ import crazypants.util.UserIdent;
 
 public interface ITravelAccessable {
 
-  public enum AccessMode {
-    PUBLIC,
-    PRIVATE,
-    PROTECTED
-  }
+    enum AccessMode {
+        PUBLIC,
+        PRIVATE,
+        PROTECTED
+    }
 
-  boolean canBlockBeAccessed(EntityPlayer playerName);
+    boolean canBlockBeAccessed(EntityPlayer playerName);
 
-  boolean canSeeBlock(EntityPlayer playerName);
+    boolean canSeeBlock(EntityPlayer playerName);
 
-  boolean canUiBeAccessed(EntityPlayer username);
+    boolean canUiBeAccessed(EntityPlayer username);
 
-  boolean getRequiresPassword(EntityPlayer username);
+    boolean getRequiresPassword(EntityPlayer username);
 
-  boolean authoriseUser(EntityPlayer username, ItemStack[] password);
+    boolean authoriseUser(EntityPlayer username, ItemStack[] password);
 
-  AccessMode getAccessMode();
+    AccessMode getAccessMode();
 
-  void setAccessMode(AccessMode accessMode);
+    void setAccessMode(AccessMode accessMode);
 
-  ItemStack[] getPassword();
+    ItemStack[] getPassword();
 
-  void setPassword(ItemStack[] password);
-  
-  ItemStack getItemLabel();
-  
-  void setItemLabel(ItemStack lableIcon);
-  
-  String getLabel();
-  
-  void setLabel(String label);
+    void setPassword(ItemStack[] password);
 
-  @Deprecated
-  UUID getPlacedBy();
+    ItemStack getItemLabel();
 
-  @Nonnull
-  UserIdent getOwner();
+    void setItemLabel(ItemStack lableIcon);
 
-  void setPlacedBy(EntityPlayer player);
+    String getLabel();
 
-  public void clearAuthorisedUsers();
+    void setLabel(String label);
 
-  public BlockCoord getLocation();
+    @Deprecated
+    UUID getPlacedBy();
 
+    @Nonnull
+    UserIdent getOwner();
+
+    void setPlacedBy(EntityPlayer player);
+
+    void clearAuthorisedUsers();
+
+    BlockCoord getLocation();
+
+    /**
+     * Is this block a travel target for the staff or a travel anchor?
+     */
+    default boolean isTravelSource() {
+        return true;
+    }
+
+    default boolean isVisible() {
+        return true;
+    }
+
+    default void setVisible(boolean visible) {}
 }

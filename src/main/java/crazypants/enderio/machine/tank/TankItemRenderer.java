@@ -17,36 +17,36 @@ import crazypants.enderio.EnderIO;
 
 public class TankItemRenderer implements IItemRenderer {
 
-  @Override
-  public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-    return true;
-  }
-
-  @Override
-  public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-    return true;
-  }
-
-  @Override
-  public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-    if (data != null && data.length > 0) {
-      renderToInventory(item, (RenderBlocks) data[0]);
-    }
-  }
-
-  public void renderToInventory(ItemStack item, RenderBlocks renderBlocks) {
-    if (item.hasTagCompound()) {
-      TankFluidRenderer.renderTankFluid(TileTank.loadTank(item.stackTagCompound), 0, -0.1f, 0);
+    @Override
+    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+        return true;
     }
 
-    GL11.glEnable(GL11.GL_ALPHA_TEST);
-    Block block = EnderIO.blockTank;
-    int meta = item.getItemDamage();
+    @Override
+    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
+        return true;
+    }
 
-    IIcon[] icons = RenderUtil.getBlockTextures(block, meta);
-    BoundingBox bb = BoundingBox.UNIT_CUBE.translate(0, -0.1f, 0);
-    Tessellator.instance.startDrawingQuads();
-    CubeRenderer.render(bb, icons, null, RenderUtil.getDefaultPerSideBrightness());
-    Tessellator.instance.draw();
-  }
+    @Override
+    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+        if (data != null && data.length > 0) {
+            renderToInventory(item, (RenderBlocks) data[0]);
+        }
+    }
+
+    public void renderToInventory(ItemStack item, RenderBlocks renderBlocks) {
+        if (item.hasTagCompound()) {
+            TankFluidRenderer.renderTankFluid(TileTank.loadTank(item.stackTagCompound), 0, -0.1f, 0);
+        }
+
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        Block block = EnderIO.blockTank;
+        int meta = item.getItemDamage();
+
+        IIcon[] icons = RenderUtil.getBlockTextures(block, meta);
+        BoundingBox bb = BoundingBox.UNIT_CUBE.translate(0, -0.1f, 0);
+        Tessellator.instance.startDrawingQuads();
+        CubeRenderer.render(bb, icons, null, RenderUtil.getDefaultPerSideBrightness());
+        Tessellator.instance.draw();
+    }
 }
